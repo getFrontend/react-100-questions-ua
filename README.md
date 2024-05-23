@@ -327,3 +327,78 @@ class Greeting extends Component {
 ```
 
 Умовний рендеринг особливо корисний, коли потрібно адаптувати інтерфейс на основі динамічних даних або станів, таких як авторизація користувача, наявність даних та інші умови.
+
+## Як передати дані між компонентами вгору і вниз за ієрархією?
+
+У React дані можуть передаватися між компонентами вгору і вниз по ієрархії з використанням пропсів (props) і колбеків (callback функцій). Ось як це працює:
+
+#### Передача даних вниз за ієрархією (від батька до дочірнього компонента):
+
+Пропси (props): Батьківський компонент передає дані своєму дочірньому компоненту через пропси. Дочірній компонент може отримати доступ до цих даних як властивості (props).
+
+Приклад:
+
+```
+// Батьківський компонент
+import React from "react";
+import ChildComponent from "./ChildComponent";
+
+const ParentComponent = () => {
+  const data = "Дані для дочірнього компонента";
+
+  return <ChildComponent dataProp={data} />;
+};
+
+// Дочірній компонент
+import React from "react";
+
+const ChildComponent = (props) => {
+  return <p>{props.dataProp}</p>;
+};
+
+export default ChildComponent;
+```
+
+#### Передавання даних вгору за ієрархією (від дочірнього компонента до батька):
+
+Колбеки (callback функції): Батьківський компонент передає функцію як пропса дочірньому компоненту. Дочірній компонент може викликати цю функцію, передаючи їй дані назад вгору по ієрархії.
+
+Приклад:
+
+```
+// Батьківський компонент
+import React, { useState } from "react";
+import ChildComponent from "./ChildComponent";
+
+const ParentComponent = () => {
+  const [receivedData, setReceivedData] = useState("");
+
+  const handleDataChange = (data) => {
+    setReceivedData(data);
+  };
+
+  return (
+    <div>
+      <p>Отримані дані: {receivedData}</p>
+      <ChildComponent onDataChange={handleDataChange} />
+    </div>
+  );
+};
+
+// Дочірній компонент
+import React from "react";
+
+const ChildComponent = (props) => {
+  const sendDataToParent = () => {
+    props.onDataChange("Дані від дочірнього компонента");
+  };
+
+  return <button onClick={sendDataToParent}>Надіслати дані</button>;
+};
+
+export default ChildComponent;
+```
+
+Це дає змогу дочірньому компоненту впливати на дані та стан батьківського компонента.
+
+Використовуючи цей підхід, ви можете ефективно передавати й оновлювати дані між компонентами вгору і вниз по ієрархії.
