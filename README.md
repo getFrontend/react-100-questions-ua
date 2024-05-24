@@ -402,3 +402,64 @@ export default ChildComponent;
 Це дає змогу дочірньому компоненту впливати на дані та стан батьківського компонента.
 
 Використовуючи цей підхід, ви можете ефективно передавати й оновлювати дані між компонентами вгору і вниз по ієрархії.
+
+## Как выполнить HTTP-запросы в React?
+
+Для выполнения HTTP-запросов в React обычно используются библиотеки, такие как axios или встроенный fetch. Вот как выполнить GET-запрос с использованием библиотеки axios:
+
+1. Установите библиотеку axios с помощью npm или yarn:
+
+```
+npm install axios
+```
+
+або
+
+```
+yarn add axios
+```
+
+2. У компоненті, де ви хочете виконати HTTP-запит:
+
+```
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+const DataFetching = () => {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("https://api.example.com/data")
+      .then((response) => {
+        setData(response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setIsLoading(false);
+      });
+  }, []); // Порожній масив залежностей, щоб запит виконався тільки один раз
+
+  if (isLoading) {
+    return <p>Завантаження...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+  return (
+    <div>
+      <h2>Fetched Data</h2>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  );
+};
+
+export default DataFetching;
+```
+
+У цьому прикладі ми використовуємо хук useState для управління станом даних, завантаження і помилок. Хук useEffect використовується для виконання HTTP-запиту під час монтування компонента. Залежно від результату запиту, ми оновлюємо стан для відображення даних, завантаження або помилки.
