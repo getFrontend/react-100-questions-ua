@@ -562,7 +562,7 @@ const TodoList = ({ data }) => {
   return (
     <ul>
       {data.map((todo) => (
-        <li key={data.id}>{data.text}</li>
+        <li key={todo.id}>{todo.text}</li>
       ))}
     </ul>
   );
@@ -574,3 +574,77 @@ export default TodoList;
 У цьому прикладі кожному елементу списку завдань (todo) присвоюється унікальний ключ (todo.id). Це дає змогу React ефективно оновлювати тільки змінені елементи, мінімізуючи кількість перемальовок.
 
 Ключі особливо важливі під час роботи зі списками, які можуть змінюватися в часі, наприклад, під час додавання, видалення або переупорядкування елементів.
+
+## Як використовувати стилі в React-компонентах?
+
+У React для стилізації компонентів можна використовувати кілька підходів: вбудовані стилі (inline styles), стилі з використанням CSS-класів і бібліотеки стилів. Ось як це робиться:
+
+#### 1. Вбудовані стилі (Inline Styles):
+
+Вбудовані стилі являють собою об'єкт JavaScript, де ключі - це назви CSS-властивостей, а значення - відповідні значення властивостей.
+
+```
+import React from "react";
+
+const MyComponent = () => {
+  const styles = {
+    backgroundColor: "blue",
+    color: "yellow",
+    padding: "12px",
+    borderRadius: "20px",
+  };
+
+  return <div style={styles}>Стилізований компонент</div>;
+};
+
+export default MyComponent;
+```
+
+#### 2. Стилі з використанням CSS-класів:
+
+Ви можете визначити CSS-класи в окремих файлах і додати їх до елементів у компонентах.
+
+```
+// styles.css
+.myClass {
+  background-color: blue;
+  color: yellow;
+  padding: 12px;
+  border-radius: 20px;
+}
+
+// MyComponent.jsx
+import React from 'react';
+import './styles.css';
+
+const MyComponent = () => {
+  return <div className="myClass">Стилізований компонент</div>;
+};
+
+export default MyComponent;
+```
+
+#### 3. Бібліотеки стилів:
+
+Існує безліч бібліотек для стилізації React-компонентів, таких як Styled Components, Emotion, CSS Modules та інші. Ці бібліотеки надають синтаксис для створення компонентів зі стилями всередині коду.
+
+```
+// Styled Components
+import React from "react";
+import styled from "styled-components";
+
+const StyledDiv = styled.div`
+  background-color: blue;
+  color: yellow;
+  padding: 12px;
+  border-radius: 20px;
+`;
+
+const MyComponent = () => {
+  return <StyledDiv>Стилізований компонент</StyledDiv>;
+};
+
+export default MyComponent;
+```
+
+Вибір методу залежить від уподобань та вимог проєкту. Важливо звернути увагу на підтримку класів, перевикористання стилів і простоту супроводу під час вибору підходу.
