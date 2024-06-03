@@ -714,3 +714,63 @@ export default UncontrolledComponent;
 У цьому прикладі значення текстового поля не зберігається в стані компонента. Натомість ми використовуємо useRef для отримання посилання на DOM-елемент і потім отримуємо його значення через inputRef.current.value.
 
 Некеровані компоненти можуть бути корисними, коли у вас є особливі випадки або вимоги, де контроль над станом через React не є оптимальним підходом. Однак, у більшості випадків, керовані компоненти забезпечують більш передбачуване і зручне управління даними у формах.
+
+## Що таке «підйом стану» (lifting state up)?
+
+«Підйом стану» (lifting state up) - це патерн у React, який передбачає переміщення стану з дочірніх компонентів до батьківських компонентів, щоб розділяти й керувати станом на вищому рівні та передавати його через пропси.
+
+Цей підхід особливо корисний, коли кілька компонентів повинні мати доступ до одного й того самого стану або коли стан повинен бути синхронізований між різними частинами програми.
+
+Приклад із підйомом стану:
+
+```
+import React, { useState } from "react";
+
+const TemperatureInput = ({ scale, temperature, onTemperatureChange }) => {
+  return (
+    <fieldset>
+      <legend>Введіть температуру в градусах {scale}:</legend>
+      <input
+        value={temperature}
+        onChange={(e) => onTemperatureChange(e.target.value)}
+      />
+    </fieldset>
+  );
+};
+
+const Calculator = () => {
+  const [celsius, setCelsius] = useState("");
+  const [fahrenheit, setFahrenheit] = useState("");
+
+  const handleCelsiusChange = (value) => {
+    setCelsius(value);
+    setFahrenheit((value * 9) / 5 + 32);
+  };
+
+  const handleFahrenheitChange = (value) => {
+    setFahrenheit(value);
+    setCelsius(((value - 32) * 5) / 9);
+  };
+
+  return (
+    <div>
+      <TemperatureInput
+        scale="C"
+        temperature={celsius}
+        onTemperatureChange={handleCelsiusChange}
+      />
+      <TemperatureInput
+        scale="F"
+        temperature={fahrenheit}
+        onTemperatureChange={handleFahrenheitChange}
+      />
+    </div>
+  );
+};
+
+export default Calculator;
+```
+
+У цьому прикладі компонент Calculator піднімає стан температур із TemperatureInput компонентів. При зміні температури в одному з вводів, стан піднімається в батьківський компонент Calculator, який потім оновлює стан для іншого вводу, забезпечуючи синхронізацію температур в обох шкалах.
+
+«Підйом стану» допомагає спростити керування даними та їхню синхронізацію між компонентами, особливо під час роботи з компонентами на різних рівнях ієрархії.
