@@ -853,3 +853,63 @@ export default MyForm;
 #### Надсилання даних:
 
 Після заповнення форми і натискання кнопки відправлення, дані можна використовувати для відправлення на сервер, виконання операцій або інших необхідних дій.
+
+## Як реалізувати умовне додавання класу до елемента в React?
+
+У React ви можете умовно додати клас до елемента, використовуючи тернарний оператор або функцію для визначення класового імені. Ось приклади обох підходів:
+
+#### З використанням тернарного оператора:
+
+```
+import React from "react";
+
+const MyComponent = ({ isActive }) => {
+  return (
+    <div className={isActive ? "active" : "inactive"}>
+      Вміст компонента
+    </div>
+  );
+};
+
+export default MyComponent;
+```
+
+У цьому прикладі клас active буде додано до елемента, якщо isActive дорівнює true, інакше буде додано клас inactive.
+
+#### З використанням функції для визначення класу:
+
+```
+import React from "react";
+
+const MyComponent = ({ isActive }) => {
+  const getClassNames = () => {
+    return isActive ? "active" : "inactive";
+  };
+
+  return <div className={getClassNames()}>Вміст компонента</div>;
+};
+
+export default MyComponent;
+```
+
+Тут ми визначаємо функцію getClassNames, яка повертає клас залежно від значення isActive.
+
+Якщо ви хочете додати кілька класів, ви можете використовувати об'єднання рядків або бібліотеки, такі як classnames.
+
+```
+import React from "react";
+import classnames from "classnames";
+
+const MyComponent = ({ isActive, isHighlighted }) => {
+  const classNames = classnames({
+    active: isActive,
+    highlighted: isHighlighted,
+  });
+
+  return <div className={classNames}>Вміст компонента</div>;
+};
+
+export default MyComponent;
+```
+
+У цьому прикладі classnames бібліотека дає змогу додати кілька класів на основі об'єкта, де ключі - це назви класів, а значення - умови, за яких клас буде додано.
