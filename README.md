@@ -1050,3 +1050,86 @@ HOC дозволяє:
 - Приклад компонента з рендер-пропсами - компоненти Mouse або Toggle в документації React.
 
 Вибір між HOC і компонентами з рендер-пропсами залежить від конкретної ситуації та вподобань розробника. Обидва патерни дають змогу досягти повторного використання логіки, але з різними підходами.
+
+## Что такое рефы (refs) в React и как они используются?
+
+Refs (скорочення від references) - це механізм у React, який дає змогу отримувати прямий доступ до DOM-елементів або компонентів, створених у React. Вони дають змогу вам звертатися до елементів, оновлювати їхні властивості та викликати методи компонентів без використання пропсів або стану.
+
+Refs корисні, коли вам потрібно взаємодіяти з DOM елементами безпосередньо або отримувати доступ до методів і властивостей компонентів, які не доступні через пропси.
+
+#### Створення рефів
+
+Існує два способи створення рефів:
+
+1. З використанням `React.createRef()` (class components):
+
+```
+import React, { Component } from "react";
+
+class MyComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+
+  render() {
+    return <div ref={this.myRef}>Вміст компоненту</div>;
+  }
+}
+```
+
+2. З використанням колбека (functional components):
+
+```
+import React, { useRef } from "react";
+
+const MyComponent = () => {
+  const myRef = useRef();
+
+  return <div ref={myRef}>Вміст компоненту</div>;
+};
+```
+
+#### Використання рефів
+
+Рефи можуть використовуватися для доступу до DOM-елементів або компонентів:
+
+```
+class MyComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.myInputRef = React.createRef();
+  }
+
+  focusInput() {
+    this.myInputRef.current.focus(); // Фокус на input елементі
+  }
+
+  render() {
+    return <input ref={this.myInputRef} />;
+  }
+}
+```
+
+```
+const MyComponent = () => {
+  const myButtonRef = useRef();
+
+  const handleClick = () => {
+    myButtonRef.current.textContent = "Кнопку натиснуто";
+  };
+
+  return (
+    <div>
+      <button ref={myButtonRef} onClick={handleClick}>
+        Натисни мене
+      </button>
+    </div>
+  );
+};
+```
+
+#### Які є нюанси?
+
+- Використовуйте рефи з обережністю, оскільки це може порушити концепцію управління станом у React.
+- У більшості випадків краще уникати використання рефів і віддавати перевагу роботі з даними через стан і пропси.
