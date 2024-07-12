@@ -2095,3 +2095,72 @@ loadUserReducers().then((userReducers) => {
 Структуру сховища стає легше зрозуміти і відстежити.
 
 У той час як нормалізація може допомогти в оптимізації та управлінні станом, вона також додає складності в логіку оновлення даних і може вимагати додаткової роботи при виборі даних для відображення в компонентах. Вам варто вибрати підхід залежно від розміру та складності вашого застосунку.
+
+## Як створити анімований перехід між сторінками за допомогою React Router?
+
+Для створення анімованих переходів між сторінками з використанням React Router ви можете використовувати такий підхід:
+
+1. Використовуйте CSS-анімації:
+   Найпростіший спосіб додати анімацію - це використовувати CSS-анімації. Ви можете визначити анімацію для елементів, які з'являються або зникають під час переходу між сторінками.
+
+2. Використовуйте бібліотеки анімацій:
+   Існує безліч бібліотек анімацій, таких як `react-transition-group`, які спрощують створення анімацій переходів. Вони дають змогу вам вказати, які елементи мають анімуватися під час монтування та розмонтування.
+
+Приклад використання `react-transition-group`:
+
+```
+import { CSSTransition } from "react-transition-group";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import "./styles.css";
+
+function App() {
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <hr />
+
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
+function Home() {
+  return (
+    <CSSTransition in={true} appear={true} timeout={300} classNames="fade">
+      <div className="home">Home Page</div>
+    </CSSTransition>
+  );
+}
+
+function About() {
+  return (
+    <CSSTransition in={true} appear={true} timeout={300} classNames="fade">
+      <div className="about">About Page</div>
+    </CSSTransition>
+  );
+}
+```
+
+3. Користувацькі анімації:
+   Якщо вам потрібна складніша анімація, ви можете створити свої власні анімації за допомогою бібліотек для анімацій, таких як `framer-motion` або `react-spring`.
+
+Не забудьте налаштувати відповідні стилі та класи для анімацій у вашому CSS.
