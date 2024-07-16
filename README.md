@@ -2265,3 +2265,65 @@ const Button = styled.button`
    Ви можете використовувати `createGlobalStyle` зі Styled Components для визначення глобальних стилів, які будуть застосовуватися до всього додатка.
 
 Styled Components спрощує структурування та управління стилями у вашому проєкті, даючи змогу створювати компоненти, що включають у себе стилі та поведінку. Вона також забезпечує підтримку динамічних стилів і пропсів, що робить стилізацію компонентів більш гнучкою.
+
+## Як передати дані з сервера на клієнт під час використання SSR у React?
+
+Під час використання SSR (Server-Side Rendering) у React, дані можуть бути попередньо завантажені на сервері та передані клієнту для ініціалізації стану програми. Ось як це робиться:
+
+1. Підготуйте сервер:
+   Ваш сервер повинен мати можливість обробляти запити на серверний рендеринг і отримання даних. Для цього ви можете використовувати бібліотеки типу Express.js, Next.js або інші.
+
+2. Завантажте дані на сервері:
+   Під час обробки запиту на сервері ви можете завантажити дані з вашого API або іншого джерела даних. Ці дані будуть використані для ініціалізації стану на клієнті.
+
+3. Передайте дані клієнту:
+   Найпоширеніший спосіб передавання даних із сервера на клієнт - це вбудовування даних у HTML, що надсилається клієнту. Наприклад, ви можете використовувати `window.INITIAL_STATE` або якусь іншу глобальну змінну на клієнті, щоб зберегти дані.
+
+4. Використовуйте дані на клієнті:
+   Коли клієнтський код почне виконуватися, він може витягти передані дані з глобальної змінної та використати їх для ініціалізації стану програми.
+
+Пример на Express.js:
+
+```
+import express from 'express';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import App from './App'; // Ваш компонент React
+import fetchInitialData from './fetchInitialData'; // Функція для завантаження даних
+
+const app = express();
+
+app.get('/', async (req, res) => {
+  try {
+    const initialData = await fetchInitialData(); // Завантаження даних із сервера
+    const appMarkup = renderToString(<App initialData={initialData} />);
+    const html = `
+      <html>
+        <head>
+          <title>SSR React App</title>
+        </head>
+        <body>
+          <div id="root">${appMarkup}</div>
+          <script>
+            window.__INITIAL_DATA__ = ${JSON.stringify(initialData)};
+          </script>
+          <script src="bundle.js"></script>
+        </body>
+      </html>
+    `;
+    res.send(html);
+  } catch (error) {
+    console.error('Error during server rendering:', error);
+
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.listen(3000, () => {
+  console.log('Server is listening on port 3000');
+});
+```
+
+На клієнті ви можете використовувати `window.__INITIAL_DATA__` для ініціалізації стану вашої програми переданими даними.
+
+Не забудьте обробити помилки і подбати про безпеку під час передачі даних із сервера на клієнт.
