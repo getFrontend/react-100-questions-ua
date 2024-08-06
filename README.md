@@ -2947,3 +2947,98 @@ const UserProfile = ({ username, avatar }) => {...}
 ```
 
 Дотримання цих принципів під час іменування компонентів допоможе зробити ваш код більш читабельним, зрозумілим і зручним для супроводу.
+
+## Як реалізувати анімацію переходів між компонентами в React Router?
+
+Для реалізації анімації переходів між компонентами під час використання React Router, ви можете скористатися різними підходами та бібліотеками. Ось один із підходів, використовуючи CSS-транзиції та бібліотеку `react-transition-group`.
+
+#### 1) Встановлення залежностей:
+
+Встановіть бібліотеку `react-transition-group` за допомогою npm або yarn:
+
+```
+npm install react-transition-group
+```
+
+#### 2) Створення компонентів анімації:
+
+Створіть компоненти, які керуватимуть анімацією входу і виходу. Наприклад, `FadeIn` і `FadeOut`.
+
+```
+import React from 'react';
+import { CSSTransition } from 'react-transition-group';
+import './FadeTransition.css'; // Підключіть стилі для анімації
+
+const FadeTransition = ({ children, ...props }) => (
+  <CSSTransition
+    {...props}
+    timeout={500}
+    classNames="fade"
+  >
+    {children}
+  </CSSTransition>
+);
+
+export default FadeTransition;
+```
+
+#### 3) Створення CSS-транзицій:
+
+У папці вашого проєкту створіть файл `FadeTransition.css` і визначте стилі для анімації:
+
+```
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+}
+```
+
+#### 4) Використання анімації:
+
+У вашому компоненті, де ви використовуєте R`eact Router`, оберніть маршрут у компонент `FadeTransition`:
+
+```
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import FadeTransition from './FadeTransition';
+import Home from './Home';
+import About from './About';
+
+const App = () => {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/about">
+          <FadeTransition>
+            <About />
+          </FadeTransition>
+        </Route>
+        <Route path="/">
+          <FadeTransition>
+            <Home />
+          </FadeTransition>
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
+
+export default App;
+```
+
+У цьому прикладі під час переходу між маршрутами компоненти з'являтимуться і зникатимуть з анімацією.
+
+Зверніть увагу, що це лише один зі способів реалізації анімації переходів. Існують й інші бібліотеки, як-от `framer-motion` та `react-router-transitions`, які також можуть допомогти в реалізації анімацій між компонентами під час використання React Router.
