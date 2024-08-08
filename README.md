@@ -3061,3 +3061,91 @@ export default App;
    Якщо компоненти використовують спільну логіку або дані, спробуйте перемістити цю логіку або дані до спільного батьківського компонента. Це дасть змогу уникнути глибокого перенесення стану.
 
 Важливо знаходити баланс між передачею даних через пропси та використанням спеціалізованих методів управління станом. Використовуйте той патерн, який найбільше підходить для конкретної ситуації, щоб забезпечити читабельність, підтримуваність і ефективність вашого коду.
+
+## Як реалізувати модальне вікно в React-додатку?
+
+Реалізація модального вікна в React-додатку може бути виконана різними способами. Ось один зі способів, використовуючи стан і стилі:
+
+#### 1) Створення компонента модального вікна:
+
+Створіть компонент для модального вікна, який буде керувати його відображенням і змістом.
+
+```
+import React from 'react';
+
+const Modal = ({ isOpen, onClose, children }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal">
+        <button className="modal-close" onClick={onClose}>Закрити</button>
+        {children}
+      </div>
+    </div>
+  );
+};
+
+export default Modal;
+```
+
+#### 2) Створення стилів для модального вікна:
+
+Створіть стилі для модального вікна за допомогою CSS або будь-якого CSS-препроцесора.
+
+```
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+```
+
+#### 3) Використання модального вікна:
+
+Використовуйте створений компонент модального вікна у вашому додатку.
+
+```
+import React, { useState } from 'react';
+import Modal from './Modal';
+
+const App = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+
+  return (
+    <div>
+      <button onClick={openModal}>Відкрити модальне вікно</button>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <h2>Модальне вікно</h2>
+        <p>Вміст модального вікна...</p>
+      </Modal>
+    </div>
+  );
+};
+
+export default App;
+```
+
+Це базовий приклад реалізації модального вікна в React-додатку. Ви можете налаштувати його дизайн і поведінку залежно від ваших вимог. Для більш складних сценаріїв і анімацій також можуть знадобитися додаткові бібліотеки або підходи.
