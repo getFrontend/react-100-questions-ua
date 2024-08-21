@@ -3551,3 +3551,82 @@ export default App;
 ```
 
 У цьому прикладі компонент `Toolbar` отримує доступ до значення теми, переданої через контекст від компонента `App`, без явної передачі через пропси.
+
+## Як реалізувати перетягування (drag-and-drop) елементів у React-додатку?
+
+Для реалізації перетягування елементів у React-додатку ви можете використовувати нативні події браузера в поєднанні зі станом компонентів React. Ось базові кроки, як це можна зробити:
+
+#### 1) Створення компонентів:
+
+- Створіть компоненти, які ви плануєте переміщувати.
+- Визначте обробники подій для початку і завершення перетягування.
+
+#### 2) Управління станом:
+
+Створіть стан, який зберігатиме інформацію про перетягуваний елемент, його початкові координати тощо.
+
+#### 3) Додавання обробників подій:
+
+- Додайте обробник події `onDragStart` для елемента, який буде перетягуватися. У цьому обробнику встановіть дані про елемент, що перетягується, у стан, використовуючи функцію `setData` та `event.dataTransfer`.
+- Додайте обробники `onDragOver` та `onDrop` для контейнера, куди ви збираєтеся переміщати елементи. В обробнику `onDragOver` запобігайте дії за замовчуванням, щоб дозволити перетягування, і в обробнику `onDrop` обробіть перетягування елемента.
+
+Приклад:
+
+```
+import React, { useState } from 'react';
+
+function DraggableElement({ text }) {
+  const handleDragStart = (event) => {
+    event.dataTransfer.setData('text/plain', text);
+  };
+
+  return (
+    <div
+      draggable
+      onDragStart={handleDragStart}
+      className="draggable-element"
+    >
+      {text}
+    </div>
+  );
+}
+
+function DroppableArea() {
+  const [droppedItems, setDroppedItems] = useState([]);
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const droppedText = event.dataTransfer.getData('text/plain');
+    setDroppedItems([...droppedItems, droppedText]);
+  };
+
+  return (
+    <div
+      className="droppable-area"
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
+    >
+      {droppedItems.map((item, index) => (
+        <div key={index}>{item}</div>
+      ))}
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div className="app">
+      <DraggableElement text="Перетягни мене!" />
+      <DroppableArea />
+    </div>
+  );
+}
+
+export default App;
+```
+
+Це базовий приклад реалізації перетягування елементів у React. Ви можете доповнити його стилями і додатковими функціями для поліпшення користувацького досвіду.
