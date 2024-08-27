@@ -3883,3 +3883,93 @@ Redux, MobX та інші бібліотеки управління станом
 5. Зміна стану (State Mutation): Процес зміни даних, що зберігаються в стані компонента. Важливо робити зміни незмінними, щоб React міг правильно визначати, коли потрібно оновлювати компоненти.
 
 Реактивне програмування допомагає керувати складними інтерфейсами і даними, що динамічно змінюються, забезпечуючи декларативність і ефективність у розробці інтерфейсів на основі React.
+
+## Як обробляти помилки під час використання хуків (hooks) у React?
+
+Обробка помилок під час використання хуків у React передбачає різні підходи залежно від ситуації. Ось кілька способів, як можна обробляти помилки під час роботи з хуками:
+
+#### 1) Використання try/catch всередині компонента:
+
+Усередині функціонального компонента можна використовувати блок try/catch для лову помилок, що виникають усередині хука.
+
+```
+import React, { useState } from 'react';
+
+function MyComponent() {
+  try {
+    const [value, setValue] = useState('');
+
+    // ...
+
+  } catch (error) {
+    // Обробка помилок
+    console.error('Error:', error);
+  }
+
+  return (
+    // ...
+  );
+}
+```
+
+#### 2) Використання componentDidCatch:
+
+Якщо компонент містить інші компоненти з помилками (наприклад, хуки, які викликаються всередині дочірніх компонентів), ви можете використовувати метод життєвого циклу `componentDidCatch` для опрацювання помилок.
+
+```
+import React, { Component } from 'react';
+
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  componentDidCatch(error, info) {
+    this.setState({ hasError: true });
+    console.error('Error:', error);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <p>Something went wrong.</p>;
+    }
+    return this.props.children;
+  }
+}
+
+export default ErrorBoundary;
+```
+
+Використовуйте цей компонент-обгортку для ваших компонентів, де можливі помилки.
+
+#### 3) Custom Hook для обробки помилок:
+
+Ви можете створити власний хук для обробки помилок і використовувати його у ваших компонентах.
+
+```
+import { useState } from 'react';
+
+function useErrorHandler() {
+  const [error, setError] = useState(null);
+
+  const handleError = (error) => {
+    setError(error);
+    console.error('Error:', error);
+  };
+
+  const clearError = () => {
+    setError(null);
+  };
+
+  return [error, handleError, clearError];
+}
+
+export default useErrorHandler;
+```
+
+#### 4) Бібліотеки для обробки помилок:
+
+Існують такі бібліотеки, як `react-error-boundary`, які надають компоненти для зручнішого оброблення помилок і виведення інформації про помилки в інтерфейсі.
+
+Обробка помилок під час використання хуків у React може залежати від конкретної ситуації та архітектури вашого застосунку. Важливо мати механізми для виявлення і відображення помилок, щоб зробити користувацький досвід більш інформативним і зрозумілим.
