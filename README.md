@@ -4060,3 +4060,56 @@ function ItemList({ items }) {
 Тут `item.id` слугує стабільним ідентифікатором (ключем) для кожного елемента списку. Якщо дані в `items` зміняться, React зможе ефективно оновити тільки відповідні елементи.
 
 Використання стабільних ключів важливе для оптимізації продуктивності, оскільки неправильне або змінне використання ключів може призвести до непотрібного перемальовування компонентів і погіршення продуктивності під час оновлення списків.
+
+## Як оновити стан компонента після зміни props?
+
+У React існує кілька способів оновлення стану компонента після зміни його props. Це може знадобитися, коли компонент залежить від вхідних props і має реагувати на їхні зміни. Ось кілька підходів:
+
+####1) componentDidUpdate(prevProps):
+
+Метод `componentDidUpdate()` викликається після оновлення компонента. Ви можете порівняти попередні та поточні props за допомогою параметра `prevProps` та `this.props`, і за необхідності оновити стан:
+
+```
+componentDidUpdate(prevProps) {
+  if (this.props.someProp !== prevProps.someProp) {
+    this.setState({ someState: newValue });
+  }
+}
+```
+
+#### 2) getDerivedStateFromProps(nextProps, prevState):
+
+Цей статичний метод викликається перед візуалізацією та щоразу, коли відбувається оновлення props. Ви можете повернути новий стан на основі нових props:
+
+```
+static getDerivedStateFromProps(nextProps, prevState) {
+  if (nextProps.someProp !== prevState.prevPropValue) {
+    return { someState: newValue };
+  }
+  return null;
+}
+```
+
+#### 3) useState з useEffect:
+
+Якщо ви використовуєте функціональні компоненти, ви можете використовувати `useState` для зберігання стану та `useEffect` для реагування на зміни props:
+
+```
+import React, { useState, useEffect } from 'react';
+
+function MyComponent(props) {
+  const [state, setState] = useState(initialState);
+
+  useEffect(() => {
+    if (props.someProp !== state.someState) {
+      setState({ someState: newValue });
+    }
+  }, [props.someProp]);
+
+  //...
+}
+```
+
+Вибір підходу залежить від версії React і архітектури компонента.
+
+Наприклад, починаючи з React 16.3 рекомендується використовувати `getDerivedStateFromProps` для таких сценаріїв, але для функціональних компонентів з React Hooks, `useState` та `useEffect` можуть бути зручнішими.
