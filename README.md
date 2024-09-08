@@ -145,7 +145,7 @@ React використовує віртуальне DOM (Document Object Model) 
 
 JSX дає змогу вставляти JavaScript-вирази всередині тегів, укладаючи їх у фігурні дужки. Наприклад:
 
-```
+```jsx
 const name = "Микола";
 const element = <h1>Привіт, {name}</h1>;
 ```
@@ -154,7 +154,7 @@ const element = <h1>Привіт, {name}</h1>;
 
 JSX також дає змогу описувати користувацькі компоненти користувача у вигляді елементів, що робить код більш структурованим і зручним для читання:
 
-```
+```jsx
 function Greeting(props) {
   return <p>Привіт, {props.name}!</p>;
 }
@@ -244,7 +244,7 @@ Virtual DOM (віртуальне DOM) - це концепція, яку вик�
 
 Приклад:
 
-```
+```jsx
 import React, { Component } from "react";
 
 class Counter extends Component {
@@ -282,7 +282,7 @@ export default Counter;
 
 Приклад використання setState():
 
-```
+```jsx
 import React, { Component } from "react";
 
 class Counter extends Component {
@@ -329,7 +329,7 @@ export default Counter;
 
 Приклад використання пропсів:
 
-```
+```jsx
 import React from "react";
 
 function Welcome(props) {
@@ -387,7 +387,7 @@ export default App;
 
 Приклад обробки кліка:
 
-```
+```jsx
 import React, { Component } from "react";
 
 class Button extends Component {
@@ -415,7 +415,7 @@ export default Button;
 
 Приклад умовного рендерингу:
 
-```
+```jsx
 import React, { Component } from "react";
 
 class Greeting extends Component {
@@ -437,7 +437,7 @@ export default Greeting;
 
 Умовний рендеринг можна реалізувати також за допомогою тернарного оператора:
 
-```
+```jsx
 class Greeting extends Component {
   render() {
     const isLoggedIn = this.props.isLoggedIn;
@@ -469,7 +469,7 @@ class Greeting extends Component {
 
 Приклад:
 
-```
+```jsx
 // Батьківський компонент
 import React from "react";
 import ChildComponent from "./ChildComponent";
@@ -496,7 +496,7 @@ export default ChildComponent;
 
 Приклад:
 
-```
+```jsx
 // Батьківський компонент
 import React, { useState } from "react";
 import ChildComponent from "./ChildComponent";
@@ -554,7 +554,7 @@ yarn add axios
 
 2. У компоненті, де ви хочете виконати HTTP-запит:
 
-```
+```jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -609,7 +609,7 @@ export default DataFetching;
 
 Приклад використання контексту:
 
-```
+```jsx
 import React, { createContext, useContext } from "react";
 
 // Створюємо контекст
@@ -658,7 +658,7 @@ export default App;
 
 1. З використанням класів:
 
-```
+```jsx
 import React, { PureComponent } from "react";
 
 class MyPureComponent extends PureComponent {
@@ -672,7 +672,7 @@ export default MyPureComponent;
 
 2. З використанням функціональних компонентів і хуків:
 
-```
+```jsx
 import React, { memo } from "react";
 
 const MyPureComponent = () => {
@@ -694,7 +694,7 @@ export default memo(MyPureComponent);
 
 Приклад використання ключів:
 
-```
+```jsx
 import React from "react";
 
 const TodoList = ({ data }) => {
@@ -724,7 +724,7 @@ export default TodoList;
 
 Вбудовані стилі являють собою об'єкт JavaScript, де ключі - це назви CSS-властивостей, а значення - відповідні значення властивостей.
 
-```
+```jsx
 import React from "react";
 
 const MyComponent = () => {
@@ -745,7 +745,7 @@ export default MyComponent;
 
 Ви можете визначити CSS-класи в окремих файлах і додати їх до елементів у компонентах.
 
-```
+```jsx
 // styles.css
 .myClass {
   background-color: blue;
@@ -769,7 +769,7 @@ export default MyComponent;
 
 Існує безліч бібліотек для стилізації React-компонентів, таких як Styled Components, Emotion, CSS Modules та інші. Ці бібліотеки надають синтаксис для створення компонентів зі стилями всередині коду.
 
-```
+```jsx
 // Styled Components
 import React from "react";
 import styled from "styled-components";
@@ -800,7 +800,7 @@ export default MyComponent;
 
 Приклад керованого компонента з текстовим полем:
 
-```
+```jsx
 import React, { useState } from "react";
 
 const ControlledComponent = () => {
@@ -835,7 +835,7 @@ export default ControlledComponent;
 
 Приклад некерованого компонента з текстовим полем:
 
-```
+```jsx
 import React, { useRef } from "react";
 
 const UncontrolledComponent = () => {
@@ -870,7 +870,7 @@ export default UncontrolledComponent;
 
 Приклад із підйомом стану:
 
-```
+```jsx
 import React, { useState } from "react";
 
 const TemperatureInput = ({ scale, temperature, onTemperatureChange }) => {
@@ -932,7 +932,7 @@ export default Calculator;
 
 Спочатку створіть компонент форми та визначте елементи форми всередині нього, такі як текстові поля, чекбокси, кнопки тощо.
 
-```
+```jsx
 import React, { useState } from "react";
 
 const MyForm = () => {
@@ -1011,7 +1011,7 @@ export default MyForm;
 
 #### З використанням тернарного оператора:
 
-```
+```jsx
 import React from "react";
 
 const MyComponent = ({ isActive }) => {
@@ -1029,7 +1029,7 @@ export default MyComponent;
 
 #### З використанням функції для визначення класу:
 
-```
+```jsx
 import React from "react";
 
 const MyComponent = ({ isActive }) => {
@@ -1047,7 +1047,7 @@ export default MyComponent;
 
 Якщо ви хочете додати кілька класів, ви можете використовувати об'єднання рядків або бібліотеки, такі як classnames.
 
-```
+```jsx
 import React from "react";
 import classnames from "classnames";
 
@@ -1075,7 +1075,7 @@ export default MyComponent;
 
 З використанням фрагментів, це має чистіший та ефективніший вигляд:
 
-```
+```jsx
 import React from "react";
 
 const MyComponent = () => {
@@ -1152,7 +1152,7 @@ HOC - це функція, яка приймає компонент і пове�
 
 Приклад HOC:
 
-```
+```jsx
 import React from "react";
 
 const withLogger = (WrappedComponent) => {
@@ -1224,7 +1224,7 @@ Refs корисні, коли вам потрібно взаємодіяти з 
 
 1. З використанням `React.createRef()` (class components):
 
-```
+```jsx
 import React, { Component } from "react";
 
 class MyComponent extends Component {
@@ -1241,7 +1241,7 @@ class MyComponent extends Component {
 
 2. З використанням колбека (functional components):
 
-```
+```jsx
 import React, { useRef } from "react";
 
 const MyComponent = () => {
@@ -1255,7 +1255,7 @@ const MyComponent = () => {
 
 Рефи можуть використовуватися для доступу до DOM-елементів або компонентів:
 
-```
+```jsx
 class MyComponent extends Component {
   constructor(props) {
     super(props);
@@ -1272,7 +1272,7 @@ class MyComponent extends Component {
 }
 ```
 
-```
+```jsx
 const MyComponent = () => {
   const myButtonRef = useRef();
 
@@ -1321,7 +1321,7 @@ const MyComponent = () => {
 
 Приклад використання React Transition Group:
 
-```
+```jsx
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 import "./MyComponent.css";
@@ -1360,7 +1360,7 @@ export default MyComponent;
 
 Приклад використання контексту:
 
-```
+```jsx
 import React, { createContext, useContext } from "react";
 
 // Створюємо контекст
@@ -1404,7 +1404,7 @@ function App() {
 
 Приклад використання порталів:
 
-```
+```jsx
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -1443,7 +1443,7 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 1. Створіть компонент, що ліниво завантажується:
 
-```
+```jsx
 // LazyComponent.jsx
 import React from "react";
 
@@ -1456,7 +1456,7 @@ export default LazyComponent;
 
 2. Використовуйте `React.lazy()` для ледачого завантаження:
 
-```
+```jsx
 import React, { Suspense } from "react";
 
 const LazyComponent = React.lazy(() => import("./LazyComponent"));
@@ -1479,7 +1479,7 @@ export default App;
 
 При використанні ледачого завантаження через `React.lazy()`, не забудьте, що це працює тільки з дефолтними експортами компонентів. Якщо ви хочете ліниво завантажити компоненти з іменованими експортами, ви можете використовувати альтернативний підхід з `import()`:
 
-```
+```jsx
 const LazyComponent = React.lazy(() => import("./LazyComponent"));
 ```
 
@@ -1584,7 +1584,7 @@ React DevTools також надає інструменти для профіл�
 1. **useState:**
    Дозволяє функціональним компонентам мати локальний стан. Ви можете визначити змінні стану та функції для їхнього оновлення. Приклад:
 
-```
+```jsx
 import React, { useState } from "react";
 
 function Counter() {
@@ -1602,7 +1602,7 @@ function Counter() {
 2. **useEffect:**
    Дозволяє виконувати побічні ефекти у функціональних компонентах. Наприклад, виконання коду після рендерингу компонента, робота з асинхронними запитами та підписками. Приклад:
 
-```
+```jsx
 import React, { useState, useEffect } from "react";
 
 function DataFetching() {
@@ -1625,7 +1625,7 @@ function DataFetching() {
 3. **useContext**:
    Дозволяє отримувати доступ до контексту з компонента. Контекст - це спосіб передачі даних глибоко в дерево компонентів без явної передачі через пропси. Приклад:
 
-```
+```jsx
 import React, { useContext } from "react";
 import { ThemeContext } from "./ThemeContext";
 
@@ -1669,7 +1669,7 @@ function ThemedButton() {
 
 Ось приклад, як це може виглядати:
 
-```
+```jsx
 import { useState } from "react";
 
 // Створюємо власний хук
@@ -1735,7 +1735,7 @@ Error Boundary (граничні помилки) в React - це компоне�
 
 Приклад:
 
-```
+```jsx
 import React, { Component } from "react";
 
 class ErrorBoundary extends Component {
@@ -1927,7 +1927,7 @@ Memoization - це техніка оптимізації, яка дає змог
 
 Ось приклад використання memoizee:
 
-```
+```jsx
 const memoize = require("memoizee");
 
 const expensiveFunction = (param) => {
@@ -2049,7 +2049,7 @@ CSR може надавати більш плавні переходи та ін
 
 Ви можете використовувати функцію `React.lazy()` для асинхронного завантаження компонентів. Ця функція приймає функцію, що повертає проміс, який дозволяється в модуль із компонентом. Наприклад:
 
-```
+```jsx
 const MyComponent = React.lazy(() => import("./MyComponent"));
 ```
 
@@ -2057,7 +2057,7 @@ const MyComponent = React.lazy(() => import("./MyComponent"));
 
 Коли ви використовуєте асинхронне завантаження, ви також маєте використати компонент `Suspense`, який очікуватиме завантаження асинхронних компонентів. Загорніть точку входу вашого додатка (зазвичай навколо компонента `<Router>`) у `<Suspense>` та вкажіть `fallback` - компонент, який відображатиметься під час завантаження:
 
-```
+```jsx
 import {
   BrowserRouter as Router,
   Route,
@@ -2150,7 +2150,7 @@ function App() {
 
 Звичайна дія Redux являє собою об'єкт, наприклад:
 
-```
+```jsx
 const action = {
   type: "SOME_ACTION",
   payload: someData,
@@ -2159,7 +2159,7 @@ const action = {
 
 З використанням Redux Thunk, дії стають функціями, які можуть виконувати асинхронні операції, і мають доступ до методу `dispatch` і поточного стану:
 
-```
+```jsx
 const asyncAction = () => (dispatch, getState) => {
   // Виконуємо асинхронні операції, наприклад, запит до сервера
   fetch("https://api.example.com/data")
@@ -2234,7 +2234,7 @@ Redux Saga надає складніший, але потужніший підх
 
 Приклад:
 
-```
+```jsx
 // Модуль "counter"
 export const loadCounterReducers = () =>
   import("./counter/reducers").then((module) => module.default);
@@ -2247,7 +2247,7 @@ export const loadUserReducers = () =>
 4. Динамічно підключіть редьюсери:
    У точці входу вашого застосунку (зазвичай у файлі, де ви створюєте сховище Redux), ви можете динамічно підключати редьюсери, використовуючи функції для ледачого завантаження та метод `store.replaceReducer()`:
 
-```
+```jsx
 import { createStore } з "redux";
 import { loadCounterReducers, loadUserReducers } from "./lazyReducers";
 
@@ -2319,7 +2319,7 @@ loadUserReducers().then((userReducers) => {
 
 Приклад використання `react-transition-group`:
 
-```
+```jsx
 import { CSSTransition } from "react-transition-group";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import "./styles.css";
@@ -2388,7 +2388,7 @@ CSS-модулі є підходом до організації стилів у
 **2) Використання стилів: **
 У компоненті React ви можете імпортувати стилі з модуля, як звичайний об'єкт. Наприклад:
 
-```
+```jsx
 import React from 'react';
 import styles from './Button.module.css';
 
@@ -2431,7 +2431,7 @@ Styled Components - це бібліотека для стилізації ком
 
 Наприклад:
 
-```
+```jsx
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -2448,7 +2448,7 @@ const Button = styled.button`
 3. Використання стилізованих компонентів:
    Тепер ви можете використовувати стилізований компонент `Button` так само, як і звичайний компонент:
 
-```
+```jsx
 import React from 'react';
 import Button from './Button';
 
@@ -2466,7 +2466,7 @@ export default App;
 4. Передача пропсів:
    Ви також можете передавати пропси в стилізовані компоненти та використовувати їх усередині рядків шаблону:
 
-```
+```jsx
 const Button = styled.button`
   background-color: ${(props) => (props.primary ? '#000000' : '#777777')};
   color: white;
@@ -2501,7 +2501,7 @@ Styled Components спрощує структурування та управл�
 
 Пример на Express.js:
 
-```
+```jsx
 import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -2616,13 +2616,13 @@ app.listen(3000, () => {
 
 #### 1) Імпортуйте необхідні хуки:
 
-```
+```jsx
 import React, { useState, useEffect } from 'react';
 ```
 
 #### 2) Визначте компонент і його стан:
 
-```
+```jsx
 function MyComponent() {
   const [data, setData] = useState(null);
 
@@ -2650,7 +2650,7 @@ function MyComponent() {
 
 У прикладі вище ми передали порожній масив залежностей (`[]`) в `useEffect`. Це означає, що ефект буде виконано тільки один раз під час монтування компонента. Якщо ви хочете, щоб ефект виконався при зміні певних значень, додайте їх у масив залежностей. Наприклад:
 
-```
+```jsx
 useEffect(() => {
   // Виконання асинхронної операції, що залежить від якихось значень
   fetchData(someValue).then(result => {
@@ -2711,7 +2711,7 @@ useEffect(() => {
 3. Обробка подій:
    У компонентах елементів, що перетягуються, додайте обробники подій `onDragStart`, `onDrag`, та `onDragEnd`:
 
-```
+```jsx
 <div
   draggable
   onDragStart={(e) => handleDragStart(e, item)}
@@ -2728,7 +2728,7 @@ useEffect(() => {
 5. Визначення областей для перетягування:
    У цільових компонентах визначте зони, на які можна кинути перетягуваний елемент. Додайте обробники подій `onDragOver` та `onDrop`:
 
-```
+```jsx
 <div
   onDragOver={(e) => handleDragOver(e)}
   onDrop={(e) => handleDrop(e, target)}
@@ -2817,7 +2817,7 @@ npm install react-router-dom
 
 У вашому компоненті, що відповідає за маршрутизацію, визначте маршрути за допомогою компонента `Route`. Кожен `Route` може мати шлях і відповідний компонент, який буде відображатися при збігу маршруту.
 
-```
+```jsx
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -2837,7 +2837,7 @@ function App() {
 
 Для переходу між різними маршрутами використовуйте компонент `Link` або `NavLink`. Ці компоненти створюють посилання, які оновлюють URL, але не виконують повне перезавантаження сторінки.
 
-```
+```jsx
 import { Link } from 'react-router-dom';
 
 function Navigation() {
@@ -2863,7 +2863,7 @@ function Navigation() {
 
 Ви можете використовувати динамічні параметри в маршрутах, щоб обробляти різні значення в URL.
 
-```
+```jsx
 <Route path="/user/:id" component={UserProfile} />
 ```
 
@@ -2877,7 +2877,7 @@ function Navigation() {
 
 Для відображення сторінки 404 (не знайдено), ви можете додати маршрут без вказівки path, який спрацьовуватиме в разі, якщо не знайдено збігів з іншими маршрутами.
 
-```
+```jsx
 <Route component={NotFound} />
 ```
 
@@ -2907,7 +2907,7 @@ function Navigation() {
 
 Приклад динамічного імпорту з використанням «code splitting»:
 
-```
+```jsx
 import React, { lazy, Suspense } from 'react';
 
 const DynamicComponent = lazy(() => import('./DynamicComponent'));
@@ -3003,7 +3003,7 @@ Snapshot тестування дає змогу порівнювати сері�
 
 Приклад використання ледачого завантаження компонентів за допомогою динамічного імпорту:
 
-```
+```jsx
 import React, { lazy, Suspense } from 'react';
 
 const LazyComponent = lazy(() => import('./LazyComponent'));
@@ -3039,7 +3039,7 @@ function App() {
 
 Приклад використання синтетичних подій:
 
-```
+```jsx
 import React from 'react';
 
 class Button extends React.Component {
@@ -3104,7 +3104,7 @@ HOC дають змогу додавати або змінювати функц�
 
 Приклад створення HOC:
 
-```
+```jsx
 import React from 'react';
 
 // HOC приймає компонент WrappedComponent як аргумент
@@ -3135,7 +3135,7 @@ export default ComponentWithLogger;
 
 Для використання HOC:
 
-```
+```jsx
 import React from 'react';
 import ComponentWithLogger from './ComponentWithLogger';
 
@@ -3182,7 +3182,7 @@ HOC - це потужний інструмент для повторного в�
 
 Приклад гарного іменування:
 
-```
+```jsx
 // Погано
 const C = () => {...}
 
@@ -3213,7 +3213,7 @@ npm install react-transition-group
 
 Створіть компоненти, які керуватимуть анімацією входу та виходу. Наприклад, `FadeIn` і `FadeOut`.
 
-```
+```jsx
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import './FadeTransition.css'; // Підключіть стилі для анімації
@@ -3235,7 +3235,7 @@ export default FadeTransition;
 
 У папці вашого проєкту створіть файл `FadeTransition.css` і визначте стилі для анімації:
 
-```
+```jsx
 .fade-enter {
   opacity: 0;
 }
@@ -3259,7 +3259,7 @@ export default FadeTransition;
 
 У вашому компоненті, де ви використовуєте R`eact Router`, оберніть маршрут у компонент `FadeTransition`:
 
-```
+```jsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import FadeTransition from './FadeTransition';
@@ -3323,7 +3323,7 @@ export default App;
 
 Створіть компонент для модального вікна, який буде керувати його відображенням і змістом.
 
-```
+```jsx
 import React from 'react';
 
 const Modal = ({ isOpen, onClose, children }) => {
@@ -3346,7 +3346,7 @@ export default Modal;
 
 Створіть стилі для модального вікна за допомогою CSS або будь-якого CSS-препроцесора.
 
-```
+```jsx
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -3377,7 +3377,7 @@ export default Modal;
 
 Використовуйте створений компонент модального вікна у вашому додатку.
 
-```
+```jsx
 import React, { useState } from 'react';
 import Modal from './Modal';
 
@@ -3474,7 +3474,7 @@ CSS-модулі можуть бути особливо корисними у в
 
 Приклад використання `List` з `react-virtualized`:
 
-```
+```jsx
 import React from 'react';
 import { List } from 'react-virtualized';
 
@@ -3505,7 +3505,7 @@ export default MyList;
 
 Приклад використання `FixedSizeList` з `react-window`:
 
-```
+```jsx
 import React from 'react';
 import { FixedSizeList } from 'react-window';
 
@@ -3541,7 +3541,7 @@ export default MyList;
 
 Приклад:
 
-```
+```jsx
 import React from 'react';
 
 // Припустимо, у нас є компонент ChildComponent
@@ -3594,7 +3594,7 @@ React прагне мінімізувати кількість реальних 
 
 Приклад обробки простої форми в React:
 
-```
+```jsx
 import React, { useState } from 'react';
 
 const FormExample = () => {
@@ -3697,7 +3697,7 @@ export default FormExample;
 
 Приклад:
 
-```
+```jsx
 import React from 'react';
 
 const MyComponent = React.memo(({ prop1, prop2 }) => {
@@ -3716,7 +3716,7 @@ const MyComponent = React.memo(({ prop1, prop2 }) => {
 
 Приклад з `useMemo`:
 
-```
+```jsx
 import React, { useMemo } from 'react';
 
 const MyComponent = ({ data }) => {
@@ -3749,7 +3749,7 @@ const MyComponent = ({ data }) => {
 
 Приклад:
 
-```
+```jsx
 import React, { Component } from 'react';
 
 class DataBindingExample extends Component {
@@ -3801,7 +3801,7 @@ export default DataBindingExample;
 
 Приклад використання контексту:
 
-```
+```jsx
 import React, { createContext, useContext } from 'react';
 
 // Створення контексту
@@ -3849,7 +3849,7 @@ export default App;
 
 Приклад:
 
-```
+```jsx
 import React, { useState } from 'react';
 
 function DraggableElement({ text }) {
@@ -3926,7 +3926,7 @@ export default App;
 
 Приклад обчислюваної властивості:
 
-```
+```jsx
 import React, { createContext, useContext } from 'react';
 
 const UserContext = createContext();
@@ -3977,7 +3977,7 @@ HTML5 вводить атрибут `loading` для елемента `img`, я�
 
 Приклад:
 
-```
+```jsx
 <img src="your-image-src.jpg" alt="Image" loading="lazy" />
 ```
 
@@ -3993,7 +3993,7 @@ npm install react-lazyload
 
 Приклад:
 
-```
+```jsx
 import LazyLoad from 'react-lazyload';
 
 // ...
@@ -4009,7 +4009,7 @@ import LazyLoad from 'react-lazyload';
 
 Приклад:
 
-```
+```jsx
 import React, { Suspense } from 'react';
 
 const LazyImage = React.lazy(() => import('./LazyImage'));
@@ -4044,7 +4044,7 @@ export default App;
 
 Приклад використання рендер-пропсів:
 
-```
+```jsx
 import React from 'react';
 
 class MouseTracker extends React.Component {
@@ -4098,7 +4098,7 @@ export default App;
 
 Приклад:
 
-```
+```jsx
 const MyComponent = () => {
   const handleClick = async () => {
     // Динамічний імпорт бібліотеки
@@ -4119,7 +4119,7 @@ const MyComponent = () => {
 
 Приклад:
 
-```
+```jsx
 import React, { lazy, Suspense } from 'react';
 
 const LazyComponent = lazy(() => import('./LazyComponent'));
@@ -4181,7 +4181,7 @@ Redux, MobX та інші бібліотеки управління станом
 
 Усередині функціонального компонента можна використовувати блок try/catch для лову помилок, що виникають усередині хука.
 
-```
+```jsx
 import React, { useState } from 'react';
 
 function MyComponent() {
@@ -4205,7 +4205,7 @@ function MyComponent() {
 
 Якщо компонент містить інші компоненти з помилками (наприклад, хуки, які викликаються всередині дочірніх компонентів), ви можете використовувати метод життєвого циклу `componentDidCatch` для опрацювання помилок.
 
-```
+```jsx
 import React, { Component } from 'react';
 
 class ErrorBoundary extends Component {
@@ -4236,7 +4236,7 @@ export default ErrorBoundary;
 
 Ви можете створити власний хук для обробки помилок і використовувати його у ваших компонентах.
 
-```
+```jsx
 import { useState } from 'react';
 
 function useErrorHandler() {
@@ -4283,7 +4283,7 @@ export default useErrorHandler;
 
 React Navigation - це популярна бібліотека для навігації в React Native, яка також підтримує анімовані переходи між екранами. Ви можете використовувати різні типи анімацій, такі як стандартні переходи, карусельні анімації тощо. Ось як це може виглядати:
 
-```
+```jsx
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 
 const StackNavigator = createStackNavigator({
@@ -4306,7 +4306,7 @@ export default AppContainer;
 
 React Native Navigation - це інша популярна бібліотека для навігації в React Native. Вона також надає можливість налаштовувати анімації при переходах між екранами. Приклад:
 
-```
+```jsx
 import { Navigation } from 'react-native-navigation';
 
 Navigation.setRoot({
@@ -4340,7 +4340,7 @@ Navigation.registerComponent('Screen2', () => Screen2Component);
 
 Значення ключів мають бути стабільними та унікальними для кожного елемента списку. Один із поширених підходів - використання унікальних ідентифікаторів із даних елементів як ключів. Наприклад:
 
-```
+```jsx
 function ItemList({ items }) {
   return (
     <ul>
@@ -4366,7 +4366,7 @@ function ItemList({ items }) {
 
 Метод `componentDidUpdate()` викликається після оновлення компонента. Ви можете порівняти попередні та поточні props за допомогою параметра `prevProps` та `this.props`, і за необхідності оновити стан:
 
-```
+```jsx
 componentDidUpdate(prevProps) {
   if (this.props.someProp !== prevProps.someProp) {
     this.setState({ someState: newValue });
@@ -4378,7 +4378,7 @@ componentDidUpdate(prevProps) {
 
 Цей статичний метод викликається перед візуалізацією та щоразу, коли відбувається оновлення props. Ви можете повернути новий стан на основі нових props:
 
-```
+```jsx
 static getDerivedStateFromProps(nextProps, prevState) {
   if (nextProps.someProp !== prevState.prevPropValue) {
     return { someState: newValue };
@@ -4391,7 +4391,7 @@ static getDerivedStateFromProps(nextProps, prevState) {
 
 Якщо ви використовуєте функціональні компоненти, ви можете використовувати `useState` для зберігання стану та `useEffect` для реагування на зміни props:
 
-```
+```jsx
 import React, { useState, useEffect } from 'react';
 
 function MyComponent(props) {
@@ -4421,7 +4421,7 @@ function MyComponent(props) {
 
 Приклад HOC може виглядати так:
 
-```
+```jsx
 // Приклад HOC, який додає обгортку навколо компонента та логіку обробки кліка
 function withClickHandling(WrappedComponent) {
   return class WithClickHandling extends React.Component {
